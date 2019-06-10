@@ -6,7 +6,7 @@ import { MDBContainer} from 'mdbreact';
 export default class Home extends Component {
     render() {
         return (
-            <div style={{backgroundColor: '#EEEEEE',display: 'flex', justifyContent: 'center'}}>
+            <div style={{backgroundColor: '#EEEEEE',height: '100%', position: 'absolute', left: '0px', width: '100%', overflow: 'hidden'}}>
                 <MDBContainer>
                 <Carousel>
                     <Carousel.Item>
