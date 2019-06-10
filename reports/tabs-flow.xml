@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="0">
+
+  <testsuite name="tabs-flow"
+    errors="1" failures="0" hostname="" id="" package="tabs-flow" skipped="3"
+    tests="0" time="0.000" timestamp="">
+  
+
+  
+
+  
+    
+    <testcase
+      name="get to home page" classname="tabs-flow">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="get to create page" classname="tabs-flow">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="get to index page" classname="tabs-flow">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>
