@@ -13,7 +13,7 @@ export default class Create extends Component {
         this.state = {
             gasStationName: '',
             gasStationCnpj: '',
-            gasStationCep:''
+            gasStationCep: ''
         }
     }
     onChangeName(e) {
@@ -36,9 +36,9 @@ export default class Create extends Component {
     onSubmit(e) {
         e.preventDefault();
         const obj = {
-            gasStationName: this.state.gasStationName,
-            gasStationCnpj: this.state.gasStationCnpj,
-            gasStationCep: this.gasStationCep
+            name: this.state.gasStationName,
+            business_code: this.state.gasStationCnpj,
+            zip_code: this.gasStationCep
         };
         axios.post('http://localhost:4000/business/add', obj)
             .then(res => console.log(res.data));

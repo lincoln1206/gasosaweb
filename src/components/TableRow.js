@@ -26,7 +26,10 @@ class TableRow extends Component {
                     {this.props.obj.gasStationCep}
                 </td>
                 <td>
-                    <Link to={"/edit/"+this.props.obj._id} className="btn btn-primary">Editar</Link>
+                    <Link to={"/edit/"+this.props.obj._id} className="btn btn-primary">Editar Posto</Link>
+                </td>
+                <td>
+                    <Link to={"/edit/"+this.props.obj._id} className="btn btn-primary">Alterar Preços</Link>
                 </td>
                 <td>
                     <button onClick={this.delete} className="btn btn-danger">Deletar</button>
