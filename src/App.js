@@ -1,50 +1,60 @@
-import React, { Component } from 'react';
-import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Navbar, Nav, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {homeScreen} from './modules/home/index';
+import {addScreen, editScreen, listScreen} from './modules/gas_stations/index'
+import {loginScreen, registerScreen, forgotPasswordScreen} from './modules/profile/index';
+import {logo2} from './assets/images';
+import store from './redux/store';
+import {Provider} from 'react-redux';
 
-import Home from './components/home.component';
-import Create from './components/create.component';
-import Edit from './components/edit.component';
-import Index from './components/index.component';
-import {logo} from './assets/images';
+export const data = store;
 
-class App extends Component {
+export default class App extends Component {
+
+    componentDidMount() {
+        console.log(data.getState().profileReducer.profile.isLoggedIn)
+    }
+
     render() {
         return (
-            <Router>
-                <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="/home">Gasosa
-                        <img
-                        src={logo}
-                        width={30}
-                        height={30}
-                        className="d-inline-block align-content-lg-center"
-                        alt="gasosa logo"
-                        />
-                    </Navbar.Brand>
-                    <Nav className="mr-auto">
+            <Provider store={store}>
+                <Router>
+                    <Navbar bg="dark" variant="dark">
+                        <Navbar.Brand href="/home">Gasosa
+                            <img
+                                src={logo2}
+                                width={30}
+                                height={30}
+                                className="d-inline-block align-content-lg-center"
+                                alt="gasosa logo"
+                            />
+                        </Navbar.Brand>
                         <Nav.Link href="/home">Início</Nav.Link>
-                        <Nav.Link href="/create">Adicionar Postos</Nav.Link>
-                        <Nav.Link href="/index">Lista de Postos</Nav.Link>
-                    </Nav>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Pesquisar" className="mr-sm-2" />
-                        <Button variant="outline-light">Pesquisa</Button>
-                    </Form>
-                </Navbar>
-                <div className="container">
-                     <br/>
-                    <Switch>
-                        <Route exact path='/home' component={ Home } />
-                        <Route exact path='/create' component={ Create } />
-                        <Route path='/edit/:id' component={ Edit } />
-                        <Route path='/index' component={ Index } />
-                    </Switch>
-                </div>
-            </Router>
-        );
+                        {true === true && <Nav className="mr-auto">
+                            <Nav.Link href="/add">Adicionar Postos</Nav.Link>
+                            <Nav.Link href="/list">Lista de Postos</Nav.Link>
+                        </Nav>}
+                        <Form inline>
+                            <Nav.Link href="/login">Login</Nav.Link>
+                            <Nav.Link href="/register">Registrar-se</Nav.Link>
+                        </Form>
+                    </Navbar>
+                    <div className="container">
+                        <br/>
+                        <Switch>
+                            <Route exact path='/home' component={homeScreen}/>
+                            <Route exact path='/add' component={addScreen}/>
+                            <Route path='/edit/:id' component={editScreen}/>
+                            <Route path='/list' component={listScreen}/>
+                            <Route path='/login' component={loginScreen}/>
+                            <Route path='/register' component={registerScreen}/>
+                            <Route path='/forgot' component={forgotPasswordScreen}/>
+                        </Switch>
+                    </div>
+                </Router>
+            </Provider>
+        )
     }
 }
-
-export default App;
