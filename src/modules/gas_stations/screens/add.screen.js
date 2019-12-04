@@ -9,12 +9,21 @@ class Add extends Component {
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeCnpj = this.onChangeCnpj.bind(this);
         this.onChangeCep = this.onChangeCep.bind(this);
+        this.onChangeCep = this.onChangeCep.bind(this);
+        this.onChangeGasolina = this.onChangeGasolina.bind(this);
+        this.onChangeAlcool = this.onChangeAlcool.bind(this);
+        this.onChangeDiesel = this.onChangeDiesel.bind(this);
+        this.onChangeGas = this.onChangeGas.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             gasStationName: '',
             gasStationCnpj: '',
-            gasStationCep:''
+            gasStationCep: '',
+            gasolina: '',
+            alcool: '',
+            diesel: '',
+            gas: ''
         }
     }
     onChangeName(e) {
@@ -34,15 +43,49 @@ class Add extends Component {
         console.log(this.state.gasStationCep)
     }
 
+    onChangeGasolina(e) {
+        this.setState({
+            gasolina: e.target.value
+        });
+        console.log(this.state.gasolina)
+    }
+
+    onChangeAlcool(e) {
+        this.setState({
+            alcool: e.target.value
+        });
+        console.log(this.state.alcool)
+    }
+
+    onChangeDiesel(e) {
+        this.setState({
+            diesel: e.target.value
+        });
+        console.log(this.state.diesel)
+    }
+
+    onChangeGas(e) {
+        this.setState({
+            gas: e.target.value
+        });
+        console.log(this.state.gas)
+    }
+
     onSubmit(e) {
         e.preventDefault();
         const obj = {
             gasStationName: this.state.gasStationName,
             gasStationCnpj: this.state.gasStationCnpj,
-            gasStationCep: this.state.gasStationCep
+            gasStationCep: this.state.gasStationCep,
+            gasolina: this.state.gasolina,
+            alcool: this.state.alcool,
+            diesel: this.state.diesel,
+            gas: this.state.gas
         };
         axios.post('http://localhost:4000/business/add', obj)
-            .then(res => console.log(res.data));
+            .then(alert('Posto cadastrado com sucesso!'));
+
+        this.props.history.push('/list');
     }
 
     render() {
@@ -72,6 +115,34 @@ class Add extends Component {
                                            mask='11.111-111'
                                            value={this.state.gasStationCep}
                                            onChange={this.onChangeCep}/>
+                    </div>
+                    <div className="form-group">
+                        <label>PREÇO GASOLINA: </label>
+                        <MaskedFormControl type='text'
+                                           mask='R$ 11,111'
+                                           value={this.state.gasolina}
+                                           onChange={this.onChangeGasolina}/>
+                    </div>
+                    <div className="form-group">
+                        <label>PREÇO ÁLCOOL: </label>
+                        <MaskedFormControl type='text'
+                                           mask='R$ 11,111'
+                                           value={this.state.alcool}
+                                           onChange={this.onChangeAlcool}/>
+                    </div>
+                    <div className="form-group">
+                        <label>PREÇO DIESEL: </label>
+                        <MaskedFormControl type='text'
+                                           mask='R$ 11,111'
+                                           value={this.state.diesel}
+                                           onChange={this.onChangeDiesel}/>
+                    </div>
+                    <div className="form-group">
+                        <label>PREÇO GÁS: </label>
+                        <MaskedFormControl type='text'
+                                           mask='R$ 11,111'
+                                           value={this.state.gas}
+                                           onChange={this.onChangeGas}/>
                     </div>
                     <div className="form-group">
                         <input type="submit"

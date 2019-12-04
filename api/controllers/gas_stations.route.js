@@ -30,6 +30,14 @@ businessRoutes.route('/').get(function (req, res) {
     });
 });
 
+// Find Business by Id
+businessRoutes.route('/:id').get(function (req, res) {
+    let id = req.params.id;
+    Business.findById(id, function (err, business){
+        res.json(business);
+    });
+});
+
 // Defined edit route
 businessRoutes.route('/edit/:id').get(function (req, res) {
     let id = req.params.id;
@@ -47,6 +55,10 @@ businessRoutes.route('/update/:id').post(function (req, res) {
             business.gasStationName = req.body.gasStationName;
             business.gasStationCnpj = req.body.gasStationCnpj;
             business.gasStationCep = req.body.gasStationCep;
+            business.gasolina = req.body.gasolina;
+            business.alcool = req.body.alcool;
+            business.diesel = req.body.diesel;
+            business.gas = req.body.gas;
 
             business.save().then(business => {
                 res.json('Update complete');

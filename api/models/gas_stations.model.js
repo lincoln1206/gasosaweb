@@ -13,7 +13,19 @@ let Business = new Schema({
     },
     gasStationCep: {
         type: String, required: true
-    }
+    },
+    gasolina: {
+        type: String, required: true
+    },
+    alcool: {
+        type: String, required: true
+    },
+    diesel: {
+        type: String, required: true
+    },
+    gas: {
+        type: String, required: true
+    },
 },{
     collection: 'business'
 });
